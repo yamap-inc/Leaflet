@@ -109,8 +109,8 @@ export var MarkerDrag = Handler.extend({
 		this._oldLatLng = this._marker.getLatLng();
 		this._marker
 		    .closePopup()
-		    .fire('movestart')
-		    .fire('dragstart');
+		    .fire('movestart', {}, true)
+		    .fire('dragstart', {}, true);
 	},
 
 	_onPreDrag: function (e) {
@@ -138,8 +138,8 @@ export var MarkerDrag = Handler.extend({
 		// @event drag: Event
 		// Fired repeatedly while the user drags the marker.
 		marker
-		    .fire('move', e)
-		    .fire('drag', e);
+		    .fire('move', e, true)
+		    .fire('drag', e, true);
 	},
 
 	_onDragEnd: function (e) {
@@ -152,7 +152,7 @@ export var MarkerDrag = Handler.extend({
 		// Fired when the marker stops moving (because of dragging).
 		delete this._oldLatLng;
 		this._marker
-		    .fire('moveend')
-		    .fire('dragend', e);
+		    .fire('moveend', {}, true)
+		    .fire('dragend', e, true);
 	}
 });
